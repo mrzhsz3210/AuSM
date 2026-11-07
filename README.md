@@ -1,58 +1,67 @@
 # AuSM
 
-**自传快照记忆（Autobiographical Snapshot Memory）**
+**Language**: English | [简体中文](README.zh-CN.md)
 
-> 以自传历史保存共同经历，以可重写快照表达当前理解，以证据回源和受限交接维持跨上下文连续性。
+**Autobiographical Snapshot Memory**
 
-AuSM 是由 [@mrzhsz3210](https://github.com/mrzhsz3210) 提出的、面向 LLM 对话 Agent 的上下文连续性技术路线。本仓库维护平台无关的核心规范、机器可读交换模型、一致性契约与不同宿主的实现索引。
+> Preserve shared experiences as autobiographical history, express current understanding through rewritable snapshots, and maintain cross-context continuity through evidence tracing and bounded handoff.
 
-**当前版本**：v0.1 Public Technical Draft  
-**首次公开发布日期**：2026-11-08  
-**原始提出者与草案作者**：[@mrzhsz3210](https://github.com/mrzhsz3210)
+AuSM is a context-continuity approach for LLM-based conversational agents proposed by [@mrzhsz3210](https://github.com/mrzhsz3210). This repository maintains the platform-neutral Core specification, a machine-readable exchange model, conformance contracts, and an index of host implementations.
 
-AuSM 的名称、核心结构与初始规范在此留档。本项目不声称快照、摘要、第一人称叙述、检索、反思或上下文注入等单项技术由本项目首创，也不把设计草案冒充为已经验证的普遍优势。
+**Current version**: v0.1 Public Technical Draft  
+**First public draft date**: 2026-11-08  
+**Original proposer and draft author**: [@mrzhsz3210](https://github.com/mrzhsz3210)
 
-## 阅读草案
+The AuSM name, core structure, and initial specification are recorded here. The project does not claim that snapshots, summarization, first-person narratives, retrieval, reflection, or context injection were invented by this project, and it does not present a design draft as proven universal superiority.
 
-- **[AuSM Core Spec v0.1](docs/spec/AuSM-Core-v0.1.md)**：问题定义、核心对象、不变量、宿主能力、生命周期、交换语义与一致性验收。
-- **[AuSM Core JSON Schema v0.1](schemas/AuSM-Core-v0.1.schema.json)**：`AuSMExchange/0.1` 的机器可读交换模型。
-- **[Profiles](profiles/README.md)**：参考实现与宿主 Profile 索引。
-- **[Conformance](conformance/README.md)**：一致性等级、最低测试范围与当前进度。
+## Read the Specification
 
-## 核心结构
+- **[AuSM Core Spec v0.1 — English](docs/spec/AuSM-Core-v0.1.en.md)**
+- **[AuSM Core Spec v0.1 — 简体中文](docs/spec/AuSM-Core-v0.1.md)**
+- **[AuSM Core JSON Schema v0.1](schemas/AuSM-Core-v0.1.schema.json)**: the machine-readable `AuSMExchange/0.1` model.
+- **[Profiles](profiles/README.md)**: reference implementations and host Profiles.
+- **[Conformance](conformance/README.md)**: claim levels, minimum test coverage, and current progress.
 
-| 组成 | 回答的问题 |
+The Chinese document is the initial source draft. The English version is intended to be semantically equivalent; subsequent revisions should update both.
+
+## Core Structure
+
+| Component | Question answered |
 | --- | --- |
-| **自传历史** | 当时发生了什么，Agent 当时怎样叙述？ |
-| **当前快照** | 经历这些以后，现在的 Agent 怎样理解？ |
-| **证据回源** | 这种理解来自哪段历史、原话或外部来源？ |
-| **受限交接** | 下一次上下文应该读多少、读哪些、以什么作用域读取？ |
+| **Autobiographical history** | What happened, and how did the agent narrate it at the time? |
+| **Current snapshot** | After these experiences, how does the agent understand the present? |
+| **Evidence tracing** | Which history, quotation, or external source supports that understanding? |
+| **Bounded handoff** | What should the next context read, how much, and under which scope? |
 
-AuSM 不排斥 RAG、FTS、向量检索或重排。Core 规定的是它们在路线中的位置：**检索负责按需回源，快照负责当前理解，二者不得互相冒充。**
+AuSM does not exclude RAG, FTS, vector retrieval, or reranking. Core defines their position in the architecture: **retrieval provides on-demand evidence, while snapshots provide current understanding; neither may impersonate the other.**
 
-## 平台无关是什么意思
+## What Platform Independence Means
 
-Core 不要求 AstrBot、QQ、Python、ZIP、特定数据库或特定模型厂商。宿主可以按自身能力实现 Exchange-only、Assisted 或 Full AuSM，并选择自己的存储、检索和调度方式。
+Core does not require AstrBot, QQ, Python, ZIP, a particular database, or a particular model vendor. Hosts may implement Exchange-only, Assisted, or Full AuSM using their own storage, retrieval, and scheduling choices.
 
-“平台无关”不是靠抽象措辞自动成立：至少需要两个不同宿主读写同一黄金语料，保持核心语义，并通过 Core-Structural 与 Core-Lifecycle 验证。当前准确状态是：
+Platform independence does not follow automatically from abstract wording. At least two different hosts must read and write the same golden corpus, preserve core semantics, and pass Core-Structural and Core-Lifecycle validation. The accurate current status is:
 
-- Core 规范与独立 Schema 已形成 v0.1 草案；
-- 记忆日记提供首个真实参考实现；
-- 第二宿主、跨宿主黄金语料与自动化互操作验证尚待完成；
-- 同预算基线、消融、规模与长期盲评尚未形成公开论文证据。
+- Core and its independent Schema are available as v0.1 drafts;
+- Memory Diary provides the first real reference implementation;
+- A second host, a cross-host golden corpus, and automated interoperability validation remain to be completed;
+- Public research evidence from matched-budget baselines, ablations, scale tests, and longitudinal blind evaluation has not yet been produced.
 
-## 首个参考实现
+## First Reference Implementation
 
-[记忆日记（astrbot_plugin_memory_diary）](https://github.com/mrzhsz3210/astrbot_plugin_memory_diary) 是 AuSM 的首个 AstrBot 参考实现。它使用 ZIP＋Markdown、签名侧车、`current_self` 快照、渐进式注入与本地证据检索；这些物理选择属于 Memory Diary Profile，不是所有 AuSM 实现的必要条件。
+[Memory Diary (`astrbot_plugin_memory_diary`)](https://github.com/mrzhsz3210/astrbot_plugin_memory_diary) is the first AstrBot implementation of AuSM. It uses ZIP＋Markdown, signed sidecars, a `current_self` snapshot, progressive injection, and local evidence retrieval. These physical choices belong to Memory Diary Profile and are not requirements for every AuSM implementation.
 
-## 仓库结构
+## Repository Structure
 
 ```text
 AuSM/
-├── README.md
+├── README.md                 # English home
+├── README.zh-CN.md           # 中文首页
 ├── CITATION.cff
+├── LICENSE                   # MIT for Schema and code
+├── LICENSE-docs              # CC BY 4.0 notice for prose
 ├── docs/spec/
-│   └── AuSM-Core-v0.1.md
+│   ├── AuSM-Core-v0.1.md     # 中文原始草案
+│   └── AuSM-Core-v0.1.en.md  # English version
 ├── schemas/
 │   └── AuSM-Core-v0.1.schema.json
 ├── conformance/
@@ -61,9 +70,9 @@ AuSM/
     └── README.md
 ```
 
-## 引用
+## Citation
 
-仓库提供 [CITATION.cff](CITATION.cff)。建议使用具体提交的永久链接引用草案，以固定版本。
+This repository provides [CITATION.cff](CITATION.cff). Use a permalink to a specific commit when citing the draft so that the version remains fixed.
 
 ```text
 mrzhsz3210. Autobiographical Snapshot Memory (AuSM) Core Spec v0.1:
@@ -71,6 +80,15 @@ A platform-independent draft for autobiographical history, mutable snapshots,
 and evidence-linked context handoff. 2026-11-08.
 ```
 
-## 讨论与实现
+## License
 
-欢迎通过 Issue 或 Pull Request 讨论核心语义、替代 Profile、互操作测试、相关工作与负面结果。对路线效果的比较应提供可复现证据；命名留档不替代论文的相关工作与实验章节。
+Copyright © 2026 mrzhsz3210.
+
+- **Prose specifications and documentation**: [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-docs). You may share and adapt them, including commercially, provided that you give appropriate attribution and indicate changes.
+- **JSON Schema and current or future validation code**: [MIT License](LICENSE).
+
+The licenses apply by component rather than offering an either/or choice. Third-party implementations and quotations of prior work remain subject to their own terms.
+
+## Discussion and Implementation
+
+Issues and pull requests are welcome for Core semantics, alternative Profiles, interoperability tests, related work, and negative results. Comparative claims should include reproducible evidence; recording the origin of the AuSM name does not replace related-work analysis or experiments.
