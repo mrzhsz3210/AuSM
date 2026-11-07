@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "Autobiographical Snapshot Memory (AuSM) Core Spec"
+message: "If you use this specification, please cite it using these metadata."
+type: software
+authors:
+  - name: "mrzhsz3210"
+repository-code: "https://github.com/mrzhsz3210/AuSM"
+url: "https://github.com/mrzhsz3210/AuSM"
+version: 0.1.0
+date-released: 2026-11-08
+abstract: "A platform-independent technical draft for autobiographical history, mutable snapshots, and evidence-linked context handoff for LLM-based conversational agents."
+keywords:
+  - "AuSM"
+  - "autobiographical snapshot memory"
+  - "agent memory"
+  - "context continuity"
+  - "LLM agents"
+  - "specification"
