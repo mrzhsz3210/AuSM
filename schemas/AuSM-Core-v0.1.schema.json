@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ausm:core:0.1:exchange",
+  "title": "AuSMExchange/0.1",
+  "description": "Platform-neutral exchange model for Autobiographical Snapshot Memory Core v0.1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec",
+    "profile",
+    "exported_at",
+    "memory_space",
+    "history",
+    "snapshots",
+    "anchors",
+    "confirmations",
+    "extensions"
+  ],
+  "properties": {
+    "spec": {"const": "AuSMExchange/0.1"},
+    "profile": {"type": "string", "minLength": 1},
+    "exported_at": {"$ref": "#/$defs/rfc3339"},
+    "memory_space": {"type": "string", "minLength": 1},
+    "history": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/historyRecord"}
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/snapshot"}
+    },
+    "anchors": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/anchor"}
+    },
+    "confirmations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/confirmation"}
+    },
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "rfc3339": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*:[A-Za-z0-9][A-Za-z0-9_.-]*$"
+      },
+      "additionalProperties": true
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "extensions"],
+      "properties": {
+        "kind": {"enum": ["private", "group", "custom"]},
+        "id": {"type": "string"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "timeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"$ref": "#/$defs/rfc3339"},
+        "end": {"$ref": "#/$defs/rfc3339"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "ref", "actor", "timestamp", "quote", "modality", "extensions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "source": {"enum": ["conversation", "document", "external", "derived", "unknown"]},
+        "ref": {"type": "string"},
+        "actor": {"enum": ["user", "agent", "other", "unknown"]},
+        "timestamp": {
+          "oneOf": [
+            {"$ref": "#/$defs/rfc3339"},
+            {"type": "null"}
+          ]
+        },
+        "quote": {"type": "string"},
+        "modality": {"enum": ["text", "image", "audio", "video", "other"]},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "historyRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "recorded_at", "scope", "kind", "narrative", "evidence", "extensions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "recorded_at": {"$ref": "#/$defs/rfc3339"},
+        "time_range": {"$ref": "#/$defs/timeRange"},
+        "scope": {"$ref": "#/$defs/scope"},
+        "kind": {"enum": ["full", "brief", "life", "external", "other"]},
+        "narrative": {"type": "string"},
+        "evidence": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/evidence"}
+        },
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "persona_version", "implementation", "extensions"],
+      "properties": {
+        "model": {"type": "string"},
+        "persona_version": {"type": "string"},
+        "implementation": {"type": "string"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "revision", "updated_at", "text", "based_on", "anchor_refs", "confirmation_refs", "producer", "previous", "extensions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "revision": {"type": "integer", "minimum": 1},
+        "updated_at": {"$ref": "#/$defs/rfc3339"},
+        "text": {"type": "string"},
+        "based_on": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "anchor_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "confirmation_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "producer": {"$ref": "#/$defs/producer"},
+        "previous": {
+          "oneOf": [
+            {"$ref": "#/$defs/id"},
+            {"type": "null"}
+          ]
+        },
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["by", "reason", "at", "extensions"],
+      "properties": {
+        "by": {"type": "string"},
+        "reason": {"type": "string"},
+        "at": {"$ref": "#/$defs/rfc3339"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "evidence_refs", "status", "supersession", "extensions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "text": {"type": "string", "minLength": 1},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "status": {"enum": ["active", "superseded"]},
+        "supersession": {
+          "oneOf": [
+            {"$ref": "#/$defs/supersession"},
+            {"type": "null"}
+          ]
+        },
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "evidence_refs", "status", "confirmed_by", "confirmed_at", "extensions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "text": {"type": "string", "minLength": 1},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "status": {"enum": ["pending", "confirmed", "rejected", "deferred"]},
+        "confirmed_by": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+        "confirmed_at": {
+          "oneOf": [
+            {"$ref": "#/$defs/rfc3339"},
+            {"type": "null"}
+          ]
+        },
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    }
+  }
+}
