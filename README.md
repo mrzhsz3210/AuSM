@@ -57,8 +57,7 @@ AuSM/
 ├── README.md                 # English home
 ├── README.zh-CN.md           # 中文首页
 ├── CITATION.cff
-├── LICENSE                   # MIT for Schema and code
-├── LICENSE-docs              # CC BY 4.0 notice for prose
+├── LICENSE                   # CC BY 4.0 for the whole repository
 ├── docs/spec/
 │   ├── AuSM-Core-v0.1.md     # 中文原始草案
 │   └── AuSM-Core-v0.1.en.md  # English version
@@ -84,10 +83,9 @@ and evidence-linked context handoff. 2026-11-08.
 
 Copyright © 2026 mrzhsz3210.
 
-- **Prose specifications and documentation**: [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-docs). You may share and adapt them, including commercially, provided that you give appropriate attribution and indicate changes.
-- **JSON Schema and current or future validation code**: [MIT License](LICENSE).
+Unless otherwise stated, all original content in this repository—including the prose specifications, documentation, JSON Schema, examples, and current or future validation code—is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
 
-The licenses apply by component rather than offering an either/or choice. Third-party implementations and quotations of prior work remain subject to their own terms.
+You may share and adapt the material, including commercially, provided that you give appropriate attribution, link to the license, and indicate changes. Third-party implementations and quotations of prior work remain subject to their own terms.
 
 ## Discussion and Implementation
 

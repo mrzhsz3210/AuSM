@@ -1,26 +1,38 @@
-MIT License
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 Copyright (c) 2026 mrzhsz3210
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of the JSON Schema, validation code, and associated software files in this
-repository (the "Software"), to deal in the Software without restriction,
-including without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to permit
-persons to whom the Software is furnished to do so, subject to the following
-conditions:
+Unless otherwise stated, all original content in this repository—including the
+AuSM prose specifications, documentation, JSON Schema, examples, and current
+or future validation code—is licensed under the Creative Commons Attribution
+4.0 International License.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You are free to:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- Share: copy and redistribute the material in any medium or format, including
+  commercially.
+- Adapt: remix, transform, and build upon the material for any purpose,
+  including commercially.
 
-This MIT License applies to the JSON Schema and software assets. Prose
-specifications and documentation are licensed separately under CC BY 4.0;
-see LICENSE-docs.
+Under the following terms:
+
+- Attribution: give appropriate credit, provide a link to the license, and
+  indicate if changes were made. A suitable attribution includes the AuSM name,
+  the author handle "mrzhsz3210", the document or artifact version, and the
+  source URL.
+- No additional restrictions: do not apply legal terms or technological
+  measures that legally restrict others from doing anything the license permits.
+
+No warranties are given. The license may not provide all permissions necessary
+for every intended use; other rights such as privacy, publicity, moral rights,
+or third-party rights may apply.
+
+Full legal code:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+License overview:
+https://creativecommons.org/licenses/by/4.0/
+
+This file is a licensing notice and plain-language summary, not a replacement
+for the full legal code. Third-party implementations and quoted prior work
+remain subject to their own terms.

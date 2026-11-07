@@ -57,8 +57,7 @@ AuSM/
 ├── README.md                 # English home
 ├── README.zh-CN.md           # 中文首页
 ├── CITATION.cff
-├── LICENSE                   # Schema 与代码采用 MIT
-├── LICENSE-docs              # 正文采用 CC BY 4.0
+├── LICENSE                   # 全仓统一 CC BY 4.0
 ├── docs/spec/
 │   ├── AuSM-Core-v0.1.md     # 中文原始草案
 │   └── AuSM-Core-v0.1.en.md  # English version
@@ -82,10 +81,9 @@ mrzhsz3210：《自传快照记忆（AuSM）Core Spec v0.1》，公开技术草�
 
 版权所有 © 2026 mrzhsz3210。
 
-- **规范正文与文档**：采用 [知识共享署名 4.0 国际许可（CC BY 4.0）](LICENSE-docs)。可以分享、修改和商用，但必须保留适当署名并标明所作修改。
-- **JSON Schema 与现有或后续校验代码**：采用 [MIT 许可证](LICENSE)。
+除非另有说明，本仓库全部原创内容——包括规范正文、文档、JSON Schema、示例以及现有或后续校验代码——统一采用 [知识共享署名 4.0 国际许可（CC BY 4.0）](LICENSE)。
 
-许可按部件分别适用，不是让使用者在两种许可中任选其一。第三方实现及既有工作的引用仍遵循其自身条款。
+你可以分享、修改和商用，但必须保留适当署名、提供许可链接并标明所作修改。第三方实现及既有工作的引用仍遵循其自身条款。
 
 ## 讨论与实现
 
