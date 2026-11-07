@@ -359,4 +359,4 @@ Issues and pull requests are welcome for terminology, object models, Profiles, i
 
 **One-sentence definition**: AuSM preserves shared experiences as autobiographical history, expresses current understanding through rewritable snapshots, and maintains cross-context continuity through evidence tracing and bounded handoff.
 
-**License**: The prose specification is licensed under CC BY 4.0; the Schema and future validation code are licensed under MIT. See the repository license files.
+**License**: Unless otherwise stated, all original content in this repository—including the prose specification, JSON Schema, examples, and current or future validation code—is licensed under CC BY 4.0. See the repository LICENSE file.
